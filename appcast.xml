@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/">
     <channel>
         <title>Mockup</title>
-        <link>https://raw.githubusercontent.com/WeTransfer/Sketch-Plugin/master/appcast.xml",</link>
+        <link>https://github.com/ruslanlatypov/Mockup-Plugin-for-Sketch/blob/master/appcast.xml</link>
         <description>Perspective transformation plugin for devices mockups</description>
         <language>en</language>
         <item>
