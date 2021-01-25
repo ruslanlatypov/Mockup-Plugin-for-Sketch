@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/">
-    <channel>
-        <title>Mockup</title>
-        <link>https://github.com/ruslanlatypov/Mockup-Plugin-for-Sketch/blob/master/appcast.xml</link>
-        <description>Perspective transformation plugin for devices mockups</description>
-        <language>en</language>
-        <item>
-            <title>Version 1</title>
-            <description>
-                <![CDATA[
-                <ul>
-                  <li>First release, Perspective transformation plugin for devices mockups</li>
-                </ul>
-                  ]]>
-            </description>
-            <enclosure url="https://github.com/ruslanlatypov/Mockup-Plugin-for-Sketch/archive/1.2.5.zip" sparkle:version="1"/>
-        </item>
-    </channel>
+<channel>
+    <title>Mockup</title>
+    <link>https://raw.githubusercontent.com/WeTransfer/Sketch-Plugin/master/appcast.xml</link>
+    <description>Perspective transformation plugin for devices mockups</description>
+    <language>en</language>
+    <item>
+        <title>Version 1.2.5</title>
+        <description>
+            🚀 First release, Perspective transformation plugin for devices mockups
+        </description>
+        <enclosure url="https://github.com/ruslanlatypov/Mockup-Plugin-for-Sketch/archive/1.2.5.zip" sparkle:version="1.2.5"/>
+    </item>
+    <item>
+        <title>Version 1.2.6</title>
+        <description>
+            You can now specifically select boolean shapes.
+        </description>
+        <enclosure url="https://github.com/ruslanlatypov/Mockup-Plugin-for-Sketch/archive/1.2.6.zip" sparkle:version="1.2.6"/>
+    </item>
+</channel>
 </rss>
-
