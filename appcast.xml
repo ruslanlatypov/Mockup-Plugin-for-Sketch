@@ -10,7 +10,7 @@
         <description>
             🚀 Second release, Perspective transformation plugin for devices mockups
         </description>
-        <enclosure url="https://github.com/ruslanlatypov/Mockup-Plugin-for-Sketch/releases/download/v2.0.0/mockup.sketchplugin.zip" sparkle:version="1.2.5"/>
+        <enclosure url="https://github.com/ruslanlatypov/Mockup-Plugin-for-Sketch/archive/v2.0.0.zip" sparkle:version="1.2.5"/>
     </item>
 </channel>
 </rss>
