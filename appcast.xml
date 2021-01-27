@@ -6,18 +6,11 @@
     <description>Perspective transformation plugin for devices mockups</description>
     <language>en</language>
     <item>
-        <title>Version 1.2.5</title>
+        <title>Version v2.0.0</title>
         <description>
-            🚀 First release, Perspective transformation plugin for devices mockups
+            🚀 Second release, Perspective transformation plugin for devices mockups
         </description>
-        <enclosure url="https://github.com/ruslanlatypov/Mockup-Plugin-for-Sketch/archive/1.2.5.zip" sparkle:version="1.2.5"/>
-    </item>
-    <item>
-        <title>Version 1.2.6</title>
-        <description>
-            You can now specifically select boolean shapes.
-        </description>
-        <enclosure url="https://github.com/ruslanlatypov/Mockup-Plugin-for-Sketch/archive/1.2.6.zip" sparkle:version="1.2.6"/>
+        <enclosure url="https://github.com/ruslanlatypov/Mockup-Plugin-for-Sketch/releases/download/v2.0.0/mockup.sketchplugin.zip" sparkle:version="1.2.5"/>
     </item>
 </channel>
 </rss>
