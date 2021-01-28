@@ -2,8 +2,8 @@
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/">
     <channel>
         <title>Mockup</title>
-        <link>Perspective transformation plugin for devices mockups</link>
-        <description>Quickly select all or just specific shape types</description>
+        <link>https://github.com/ruslanlatypov/Mockup-Plugin-for-Sketch/blob/master/appcast.xml</link>
+        <description>Perspective transformation plugin for devices mockups </description>
         <language>en</language>
         <item>
             <enclosure url="https://github.com/ruslanlatypov/Mockup-Plugin-for-Sketch/releases/download/v2.0.1/mockup.sketchplugin.zip" sparkle:version="2.0.1"/>
