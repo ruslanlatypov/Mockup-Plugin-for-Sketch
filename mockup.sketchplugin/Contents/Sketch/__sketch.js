@@ -2650,17 +2650,16 @@ var selectedLayer = undefined;
           title: layers[i].name
         });
       }
-    }
-
-    if (symbols.length > 0) {
-      for (var b = 0; b < symbols.length; b++) {
-        groupLayers.push({
-          id: symbols[b].id,
-          // src: `data:image/png;base64,${getPreview(symbols[b])}`,
-          title: symbols[b].name
-        });
-      }
-    } // convert array to string
+    } // if (symbols.length > 0) {
+    //     for (let b = 0; b < symbols.length; b++) {
+    //         groupLayers.push({
+    //             id: symbols[b].id,
+    //             // src: `data:image/png;base64,${getPreview(symbols[b])}`,
+    //             title: symbols[b].name
+    //         })
+    //     }
+    // }
+    // convert array to string
 
 
     return groupLayers;
