@@ -38876,6 +38876,120 @@ var Select_object = /*#__PURE__*/function (_React$Component) {
 
 /***/ }),
 
+/***/ "./resources/components/flipDistort.js":
+/*!*********************************************!*\
+  !*** ./resources/components/flipDistort.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return FlipDistortIcon; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _slicedToArray(arr, i) {
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+}
+
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+}
+
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+
+  return arr2;
+}
+
+function _iterableToArrayLimit(arr, i) {
+  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+
+function FlipDistortIcon(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      flip = _useState2[0],
+      setFlip = _useState2[1];
+
+  var FlipDistortCallback = function FlipDistortCallback() {
+    if (flip) {
+      setFlip(false);
+      props.callback('two');
+    } else {
+      setFlip(true);
+      props.callback('one');
+    }
+  };
+
+  function FlipDistort_svg_one() {
+    return {
+      __html: '<svg width="17px" height="15px" viewBox="0 0 17 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">\n' + '    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">\n' + '        <g id="Group-3" transform="translate(0.529016, 0.000000)">\n' + '            <path d="M6.47098443,2.78060703 L6.47098443,13 C6.47098443,13.5522847 6.02326918,14 5.47098443,14 L1,14 C0.44771525,14 0,13.5522847 0,13 C0,12.8620407 0.0285459646,12.7255736 0.0838426651,12.5991812 L4.55482709,2.37978819 C4.77619322,1.87380847 5.36582353,1.64308356 5.87180326,1.86444969 C6.23579059,2.02369415 6.47098443,2.38330919 6.47098443,2.78060703 Z" id="Rectangle" fill="#505050"></path>\n' + '            <path d="M14.7597692,2.31498564 C15.2333751,2.36233947 15.3082727,2.42719691 15.3604212,2.50693269 C15.4125696,2.58666846 15.4419689,2.68128257 15.4419689,2.78060703 L15.4419689,2.78060703 L15.4419689,13 C15.4419689,13.1380712 15.3860044,13.2630712 15.2955222,13.3535534 C15.20504,13.4440356 15.08004,13.5 14.9419689,13.5 L14.9419689,13.5 L10.4709844,13.5 C10.3329132,13.5 10.2079132,13.4440356 10.117431,13.3535534 C10.0460874,13.2822098 9.99620367,13.1894063 9.97829297,13.0856562 L9.97829297,13.0856562 L14.4838902,2.58019761 C14.5392317,2.45370268 14.6406063,2.3616146 14.7597692,2.31498564 Z" id="Rectangle" stroke="#2E68E5" fill="#E8F3FE" transform="translate(12.706477, 7.890177) scale(-1, 1) translate(-12.706477, -7.890177) "></path>\n' + '            <g id="Group" transform="translate(7.470984, 0.000000)" fill="#505050">\n' + '                <rect id="Rectangle" x="0" y="0" width="1" height="3" rx="0.5"></rect>\n' + '                <rect id="Rectangle" x="0" y="4" width="1" height="3" rx="0.5"></rect>\n' + '                <rect id="Rectangle" x="0" y="8" width="1" height="3" rx="0.5"></rect>\n' + '                <rect id="Rectangle" x="0" y="12" width="1" height="3" rx="0.5"></rect>\n' + '            </g>\n' + '        </g>\n' + '    </g>\n' + '</svg>'
+    };
+  }
+
+  function FlipDistort_svg_two() {
+    return {
+      __html: '<svg width="17px" height="15px" viewBox="0 0 17 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">\n' + '    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">\n' + '        <g id="001" transform="translate(9.000000, 7.500000) scale(-1, 1) translate(-9.000000, -7.500000) translate(1.000000, 0.000000)" fill-rule="nonzero">\n' + '            <path d="M7.00000043,2.78060703 L7.00000043,13 C7.00000043,13.5522847 6.55228518,14 6.00000043,14 L1.529016,14 C0.97673125,14 0.529016,13.5522847 0.529016,13 C0.529016,12.8620407 0.557561965,12.7255736 0.612858665,12.5991812 L5.08384309,2.37978819 C5.30520922,1.87380847 5.89483953,1.64308356 6.40081926,1.86444969 C6.76480659,2.02369415 7.00000043,2.38330919 7.00000043,2.78060703 Z" id="Rectangle" fill="#505050"></path>\n' + '            <path d="M15.2814773,2.31498564 C15.7550832,2.36233947 15.8299808,2.42719691 15.8821293,2.50693269 C15.9342777,2.58666846 15.963677,2.68128257 15.963677,2.78060703 L15.963677,2.78060703 L15.963677,13 C15.963677,13.1380712 15.9077125,13.2630712 15.8172303,13.3535534 C15.7267481,13.4440356 15.6017481,13.5 15.463677,13.5 L15.463677,13.5 L10.9926925,13.5 C10.8546213,13.5 10.7296213,13.4440356 10.6391391,13.3535534 C10.5677955,13.2822098 10.5179118,13.1894063 10.5000011,13.0856562 L10.5000011,13.0856562 L15.0055983,2.58019761 C15.0609398,2.45370268 15.1623144,2.3616146 15.2814773,2.31498564 Z" id="Rectangle" stroke="#2E68E5" fill="#E8F3FE" transform="translate(13.231839, 7.907493) scale(-1, 1) translate(-13.231839, -7.907493) "></path>\n' + '            <g id="Group" transform="translate(8.000000, 0.000000)" fill="#505050">\n' + '                <rect id="Rectangle" x="0" y="0" width="1" height="3" rx="0.5"></rect>\n' + '                <rect id="Rectangle" x="0" y="4" width="1" height="3" rx="0.5"></rect>\n' + '                <rect id="Rectangle" x="0" y="8" width="1" height="3" rx="0.5"></rect>\n' + '                <rect id="Rectangle" x="0" y="12" width="1" height="3" rx="0.5"></rect>\n' + '            </g>\n' + '        </g>\n' + '    </g>\n' + '</svg>'
+    };
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: {
+      marginLeft: 12,
+      cursor: 'pointer'
+    },
+    className: 'rotateImage',
+    dangerouslySetInnerHTML: flip ? FlipDistort_svg_one() : FlipDistort_svg_two(),
+    onClick: function onClick() {
+      return FlipDistortCallback();
+    }
+  }));
+}
+
+/***/ }),
+
 /***/ "./resources/components/icons/artboard_icon.js":
 /*!*****************************************************!*\
   !*** ./resources/components/icons/artboard_icon.js ***!
@@ -39328,6 +39442,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_screens_artboard__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/screens/artboard */ "./resources/components/screens/artboard.js");
 /* harmony import */ var _components_selectSize__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/selectSize */ "./resources/components/selectSize.js");
 /* harmony import */ var _components_rateteResult__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/rateteResult */ "./resources/components/rateteResult.js");
+/* harmony import */ var _components_flipDistort__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/flipDistort */ "./resources/components/flipDistort.js");
 function _slicedToArray(arr, i) {
   return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
 }
@@ -39385,6 +39500,7 @@ function _iterableToArrayLimit(arr, i) {
 function _arrayWithHoles(arr) {
   if (Array.isArray(arr)) return arr;
 }
+
 
 
 
@@ -39466,6 +39582,34 @@ function Main() {
     }
   };
 
+  var SetFlipStateOne = function SetFlipStateOne(res) {
+    var DistortData = {
+      size: selectSize,
+      artboardID: selectedArtboardId,
+      rotate: rotateImage
+    };
+    window.postMessage('send-to-distort-flip-one', JSON.stringify(DistortData)).then(function (res) {});
+  };
+
+  var SetFlipStateTwo = function SetFlipStateTwo(res) {
+    var DistortData = {
+      size: selectSize,
+      artboardID: selectedArtboardId,
+      rotate: rotateImage
+    };
+    window.postMessage('send-to-distort-flip-two', JSON.stringify(DistortData)).then(function (res) {});
+  };
+
+  var FlipDistort = function FlipDistort(res) {
+    if (res === 'one') {
+      SetFlipStateOne();
+    }
+
+    if (res === 'two') {
+      SetFlipStateTwo();
+    }
+  };
+
   function getSelected() {
     window.postMessage('get-selected', '').then(function (res) {
       if (res[0] === '4') {
@@ -39514,6 +39658,8 @@ function Main() {
     selectedCallback: SetSizeState
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_rateteResult__WEBPACK_IMPORTED_MODULE_9__["default"], {
     callback: SetRotateState
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_flipDistort__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    callback: FlipDistort
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Apply_btn__WEBPACK_IMPORTED_MODULE_5__["default"], {
     callbackClick: clickApply
   })));

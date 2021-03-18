@@ -2723,12 +2723,105 @@ var selectedLayer = undefined;
     Object(sketch_module_web_view_remote__WEBPACK_IMPORTED_MODULE_1__["sendToWebview"])('ls_graphics', "distortReact(".concat(JSON.stringify(returnData), ")"));
   }
 
+  function startFlipDistortOne(layer, size, rotate, selectedLayer) {
+    var DENSITY = size;
+    var place_from = layer;
+    var place_to = selectedLayer;
+    var length_points = place_to['points'].length;
+
+    if (length_points !== 4) {
+      UI.message("Object to place image, must have 4 points");
+      console.log("Object to place image, must have 4 points");
+      return 0;
+    }
+
+    var preparePoints = [place_to['points'][1].point, place_to['points'][0].point, place_to['points'][3].point, place_to['points'][2].point, place_to['points'][1].point, place_to['points'][0].point, place_to['points'][3].point, place_to['points'][2].point];
+    var residue = rotate % 4;
+    var sign = rotate % 8; // if (sign > 3) {
+    //     preparePoints = preparePoints.reverse();
+    // }
+    // preparePoints = preparePoints.reverse();
+
+    preparePoints = preparePoints.slice(residue, residue + 5);
+    var points = {
+      '0': preparePoints[0],
+      '1': preparePoints[1],
+      '2': preparePoints[2],
+      '3': preparePoints[3]
+    };
+    var b64Image = getImageBase64ForLayer(place_from, DENSITY);
+    var frame = place_to.frame;
+    var returnData = {
+      points: points,
+      frame: frame,
+      image: b64Image,
+      density: DENSITY
+    };
+    Object(sketch_module_web_view_remote__WEBPACK_IMPORTED_MODULE_1__["sendToWebview"])('ls_graphics', "distortReact(".concat(JSON.stringify(returnData), ")"));
+  }
+
+  function startFlipDistortTwo(layer, size, rotate, selectedLayer) {
+    var DENSITY = size;
+    var place_from = layer;
+    var place_to = selectedLayer;
+    var length_points = place_to['points'].length;
+
+    if (length_points !== 4) {
+      UI.message("Object to place image, must have 4 points");
+      console.log("Object to place image, must have 4 points");
+      return 0;
+    }
+
+    var preparePoints = [place_to['points'][0].point, place_to['points'][1].point, place_to['points'][2].point, place_to['points'][3].point, place_to['points'][0].point, place_to['points'][1].point, place_to['points'][2].point, place_to['points'][3].point];
+    var residue = rotate % 4;
+    var sign = rotate % 8; // if (sign > 3) {
+    //     preparePoints = preparePoints.reverse();
+    // }
+
+    preparePoints = preparePoints.slice(residue, residue + 5);
+    var points = {
+      '0': preparePoints[0],
+      '1': preparePoints[1],
+      '2': preparePoints[2],
+      '3': preparePoints[3]
+    };
+    var b64Image = getImageBase64ForLayer(place_from, DENSITY);
+    var frame = place_to.frame;
+    var returnData = {
+      points: points,
+      frame: frame,
+      image: b64Image,
+      density: DENSITY
+    };
+    Object(sketch_module_web_view_remote__WEBPACK_IMPORTED_MODULE_1__["sendToWebview"])('ls_graphics', "distortReact(".concat(JSON.stringify(returnData), ")"));
+  }
+
   webContents.on('send-to-distort', function (data) {
     var arrayData = JSON.parse(data);
 
     if (arrayData.artboardID !== 'notSelectArtboard') {
       selectedLayer = sketch.getSelectedDocument().selectedLayers.layers[0];
       startDistort(sketch.getSelectedDocument().getLayerWithID(arrayData.artboardID), arrayData.size, arrayData.rotate, selectedLayer);
+    } else {
+      UI.message('Please chose an artboard 🖼');
+    }
+  });
+  webContents.on('send-to-distort-flip-one', function (data) {
+    var arrayData = JSON.parse(data);
+
+    if (arrayData.artboardID !== 'notSelectArtboard') {
+      selectedLayer = sketch.getSelectedDocument().selectedLayers.layers[0];
+      startFlipDistortOne(sketch.getSelectedDocument().getLayerWithID(arrayData.artboardID), arrayData.size, arrayData.rotate, selectedLayer);
+    } else {
+      UI.message('Please chose an artboard 🖼');
+    }
+  });
+  webContents.on('send-to-distort-flip-two', function (data) {
+    var arrayData = JSON.parse(data);
+
+    if (arrayData.artboardID !== 'notSelectArtboard') {
+      selectedLayer = sketch.getSelectedDocument().selectedLayers.layers[0];
+      startFlipDistortTwo(sketch.getSelectedDocument().getLayerWithID(arrayData.artboardID), arrayData.size, arrayData.rotate, selectedLayer);
     } else {
       UI.message('Please chose an artboard 🖼');
     }
