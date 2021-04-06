@@ -1,6 +1,6 @@
 {
   "compatibleVersion": 8,
-  "bundleVersion": 1.19,
+  "bundleVersion": 1.22,
   "icon": "icon.png",
   "commands": [
     {
@@ -28,7 +28,7 @@
       }
     }
   ],
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Perspective transformation plugin for devices mockups",
   "author": "ls.graphics",
   "homepage": "https://www.ls.graphics/mockup-plugin",

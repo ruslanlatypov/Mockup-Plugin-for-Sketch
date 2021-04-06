@@ -2541,7 +2541,7 @@ module.exports.sendToWebview = function sendToWebview(identifier, evalString) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "file://" + String(context.scriptPath).split(".sketchplugin/Contents/Sketch")[0] + ".sketchplugin/Contents/Resources/_webpack_resources/afc9000f23b85efec32083c33799419d.html";
+module.exports = "file://" + String(context.scriptPath).split(".sketchplugin/Contents/Sketch")[0] + ".sketchplugin/Contents/Resources/_webpack_resources/ca38c026bfa2c7cf8f682876ee495524.html";
 
 /***/ }),
 
@@ -2560,6 +2560,41 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sketch_module_web_view__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sketch_module_web_view__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var sketch_module_web_view_remote__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! sketch-module-web-view/remote */ "./node_modules/sketch-module-web-view/remote.js");
 /* harmony import */ var sketch_module_web_view_remote__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(sketch_module_web_view_remote__WEBPACK_IMPORTED_MODULE_1__);
+function _toConsumableArray(arr) {
+  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
+}
+
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+}
+
+function _iterableToArray(iter) {
+  if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);
+}
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) return _arrayLikeToArray(arr);
+}
+
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+
+  return arr2;
+}
+
 
 
 
@@ -2676,15 +2711,20 @@ var selectedLayer = undefined;
     var selectedLayers = document.selectedLayers;
     var selectedCount = selectedLayers.length;
     var length_points = -1;
+    var maxWidth = 0;
     selectedLayers.map(function (layer) {
       if (selectedCount === 1 && layer.type === "ShapePath") {
         try {
           length_points = layer['points'].length;
           mockupLayer = layer;
+          maxWidth = Math.round(layer.frame.width * 10) / 10;
         } catch (e) {}
       }
     });
-    return length_points.toString();
+    return {
+      points: length_points.toString(),
+      width: maxWidth
+    };
   });
 
   function startDistort(layer, size, rotate, selectedLayer) {
@@ -2699,7 +2739,71 @@ var selectedLayer = undefined;
       return 0;
     }
 
-    var preparePoints = [place_to['points'][0].point, place_to['points'][1].point, place_to['points'][2].point, place_to['points'][3].point, place_to['points'][0].point, place_to['points'][1].point, place_to['points'][2].point, place_to['points'][3].point];
+    var preparePoints = [place_to['points'][0].point, place_to['points'][1].point, place_to['points'][2].point, place_to['points'][3].point];
+
+    var copyPoints = _toConsumableArray(preparePoints);
+
+    var firstMaxPointX = Math.max(place_to['points'][0].point.x, place_to['points'][1].point.x, place_to['points'][2].point.x, place_to['points'][3].point.x);
+    var firstPointElement = {};
+    var secondPointElement = {};
+    var firstMaxPointY = 0;
+    copyPoints.forEach(function (element) {
+      if (element.x === firstMaxPointX) {
+        firstPointElement = element;
+        firstMaxPointY = element.y;
+      }
+    }); // delete operation
+
+    for (var i = copyPoints.length - 1; i >= 0; i--) {
+      if (copyPoints[i].x === firstMaxPointX && copyPoints[i].y === firstMaxPointY) {
+        copyPoints.splice(i, 1);
+      }
+    } //
+
+
+    var tempNextElementX = [];
+    copyPoints.forEach(function (nextElement) {
+      tempNextElementX.push(nextElement.x);
+    });
+    var secondPointX = Math.max.apply(Math, tempNextElementX);
+    var secondPointY = 0;
+    copyPoints.forEach(function (secondElement) {
+      if (secondElement.x === secondPointX) {
+        secondPointElement = secondElement;
+        secondPointY = secondElement.y;
+      }
+    }); // delete operation
+
+    for (var z = copyPoints.length - 1; z >= 0; z--) {
+      if (copyPoints[z].x === secondPointX && copyPoints[z].y === secondPointY) {
+        copyPoints.splice(z, 1);
+      }
+    } //
+
+
+    var zero;
+    var first;
+    var second;
+    var third;
+
+    if (firstPointElement['y'] >= secondPointElement['y']) {
+      first = secondPointElement;
+      second = firstPointElement;
+    } else {
+      first = firstPointElement;
+      second = secondPointElement;
+    }
+
+    if (copyPoints[0].y > copyPoints[1].y) {
+      third = copyPoints[0];
+      zero = copyPoints[1];
+    } else {
+      third = copyPoints[1];
+      zero = copyPoints[0];
+    }
+
+    preparePoints = [zero, first, second, third, zero, first, second, third]; // new algorithm
+
     var residue = rotate % 4;
     var sign = rotate % 8; // if (sign > 3) {
     //     preparePoints = preparePoints.reverse();
@@ -2735,7 +2839,71 @@ var selectedLayer = undefined;
       return 0;
     }
 
-    var preparePoints = [place_to['points'][1].point, place_to['points'][0].point, place_to['points'][3].point, place_to['points'][2].point, place_to['points'][1].point, place_to['points'][0].point, place_to['points'][3].point, place_to['points'][2].point];
+    var preparePoints = [place_to['points'][0].point, place_to['points'][1].point, place_to['points'][2].point, place_to['points'][3].point];
+
+    var copyPoints = _toConsumableArray(preparePoints);
+
+    var firstMaxPointX = Math.max(place_to['points'][0].point.x, place_to['points'][1].point.x, place_to['points'][2].point.x, place_to['points'][3].point.x);
+    var firstPointElement = {};
+    var secondPointElement = {};
+    var firstMaxPointY = 0;
+    copyPoints.forEach(function (element) {
+      if (element.x === firstMaxPointX) {
+        firstPointElement = element;
+        firstMaxPointY = element.y;
+      }
+    }); // delete operation
+
+    for (var i = copyPoints.length - 1; i >= 0; i--) {
+      if (copyPoints[i].x === firstMaxPointX && copyPoints[i].y === firstMaxPointY) {
+        copyPoints.splice(i, 1);
+      }
+    } //
+
+
+    var tempNextElementX = [];
+    copyPoints.forEach(function (nextElement) {
+      tempNextElementX.push(nextElement.x);
+    });
+    var secondPointX = Math.max.apply(Math, tempNextElementX);
+    var secondPointY = 0;
+    copyPoints.forEach(function (secondElement) {
+      if (secondElement.x === secondPointX) {
+        secondPointElement = secondElement;
+        secondPointY = secondElement.y;
+      }
+    }); // delete operation
+
+    for (var z = copyPoints.length - 1; z >= 0; z--) {
+      if (copyPoints[z].x === secondPointX && copyPoints[z].y === secondPointY) {
+        copyPoints.splice(z, 1);
+      }
+    } //
+
+
+    var zero;
+    var first;
+    var second;
+    var third;
+
+    if (firstPointElement['y'] >= secondPointElement['y']) {
+      first = secondPointElement;
+      second = firstPointElement;
+    } else {
+      first = firstPointElement;
+      second = secondPointElement;
+    }
+
+    if (copyPoints[0].y > copyPoints[1].y) {
+      third = copyPoints[0];
+      zero = copyPoints[1];
+    } else {
+      third = copyPoints[1];
+      zero = copyPoints[0];
+    }
+
+    preparePoints = [zero, first, second, third, zero, first, second, third]; // new algorithm
+
     var residue = rotate % 4;
     var sign = rotate % 8; // if (sign > 3) {
     //     preparePoints = preparePoints.reverse();
@@ -2744,10 +2912,10 @@ var selectedLayer = undefined;
 
     preparePoints = preparePoints.slice(residue, residue + 5);
     var points = {
-      '0': preparePoints[0],
-      '1': preparePoints[1],
-      '2': preparePoints[2],
-      '3': preparePoints[3]
+      '0': preparePoints[1],
+      '1': preparePoints[0],
+      '2': preparePoints[3],
+      '3': preparePoints[2]
     };
     var b64Image = getImageBase64ForLayer(place_from, DENSITY);
     var frame = place_to.frame;
@@ -2772,7 +2940,71 @@ var selectedLayer = undefined;
       return 0;
     }
 
-    var preparePoints = [place_to['points'][0].point, place_to['points'][1].point, place_to['points'][2].point, place_to['points'][3].point, place_to['points'][0].point, place_to['points'][1].point, place_to['points'][2].point, place_to['points'][3].point];
+    var preparePoints = [place_to['points'][0].point, place_to['points'][1].point, place_to['points'][2].point, place_to['points'][3].point];
+
+    var copyPoints = _toConsumableArray(preparePoints);
+
+    var firstMaxPointX = Math.max(place_to['points'][0].point.x, place_to['points'][1].point.x, place_to['points'][2].point.x, place_to['points'][3].point.x);
+    var firstPointElement = {};
+    var secondPointElement = {};
+    var firstMaxPointY = 0;
+    copyPoints.forEach(function (element) {
+      if (element.x === firstMaxPointX) {
+        firstPointElement = element;
+        firstMaxPointY = element.y;
+      }
+    }); // delete operation
+
+    for (var i = copyPoints.length - 1; i >= 0; i--) {
+      if (copyPoints[i].x === firstMaxPointX && copyPoints[i].y === firstMaxPointY) {
+        copyPoints.splice(i, 1);
+      }
+    } //
+
+
+    var tempNextElementX = [];
+    copyPoints.forEach(function (nextElement) {
+      tempNextElementX.push(nextElement.x);
+    });
+    var secondPointX = Math.max.apply(Math, tempNextElementX);
+    var secondPointY = 0;
+    copyPoints.forEach(function (secondElement) {
+      if (secondElement.x === secondPointX) {
+        secondPointElement = secondElement;
+        secondPointY = secondElement.y;
+      }
+    }); // delete operation
+
+    for (var z = copyPoints.length - 1; z >= 0; z--) {
+      if (copyPoints[z].x === secondPointX && copyPoints[z].y === secondPointY) {
+        copyPoints.splice(z, 1);
+      }
+    } //
+
+
+    var zero;
+    var first;
+    var second;
+    var third;
+
+    if (firstPointElement['y'] >= secondPointElement['y']) {
+      first = secondPointElement;
+      second = firstPointElement;
+    } else {
+      first = firstPointElement;
+      second = secondPointElement;
+    }
+
+    if (copyPoints[0].y > copyPoints[1].y) {
+      third = copyPoints[0];
+      zero = copyPoints[1];
+    } else {
+      third = copyPoints[1];
+      zero = copyPoints[0];
+    }
+
+    preparePoints = [zero, first, second, third, zero, first, second, third]; // new algorithm
+
     var residue = rotate % 4;
     var sign = rotate % 8; // if (sign > 3) {
     //     preparePoints = preparePoints.reverse();
