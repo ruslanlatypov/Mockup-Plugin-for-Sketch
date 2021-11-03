@@ -17,5 +17,8 @@
         <item>
             <enclosure url="https://github.com/ruslanlatypov/Mockup-Plugin-for-Sketch/releases/download/v2.0.4/mockup.sketchplugin.zip" sparkle:version="2.0.4"/>
         </item>
+        <item>
+            <enclosure url="https://github.com/ruslanlatypov/Mockup-Plugin-for-Sketch/releases/download/v2.0.5.1/mockup.sketchplugin.zip" sparkle:version="2.0.5.1"/>
+        </item>
     </channel>
 </rss>

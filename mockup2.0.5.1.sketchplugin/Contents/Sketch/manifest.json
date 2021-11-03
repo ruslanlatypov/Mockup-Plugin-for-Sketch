@@ -1,0 +1,46 @@
+{
+  "compatibleVersion": 8,
+  "bundleVersion": 1.23,
+  "icon": "icon.png",
+  "commands": [
+    {
+      "name": "Run Mockup",
+      "identifier": "mockup.my-command-identifier",
+      "script": "__sketch.js",
+      "shortcut": "ctrl shift m",
+      "handlers": {
+        "run": "onRun",
+        "actions": {
+          "Shutdown": "onShutdown",
+          "SelectionChanged": "onSelectionChanged"
+        }
+      }
+    },
+    {
+      "name": "More info",
+      "identifier": "mockup.info",
+      "script": "__sketch_info.js",
+      "handlers": {
+        "run": "onRun",
+        "actions": {
+          "HandleURL": "onHandleURL"
+        }
+      }
+    }
+  ],
+  "version": "2.0.5.1",
+  "description": "Perspective transformation plugin for devices mockups",
+  "author": "ls.graphics",
+  "homepage": "https://www.ls.graphics/mockup-plugin",
+  "disableCocoaScriptPreprocessor": true,
+  "menu": {
+    "title": "Mockup Plugin",
+    "items": [
+      "mockup.my-command-identifier",
+      "mockup.info"
+    ]
+  },
+  "name": "Mockup",
+  "identifier": "Mockup",
+  "appcast": "https://raw.githubusercontent.com/ruslanlatypov/Mockup-Plugin-for-Sketch/master/.appcast.xml"
+}
